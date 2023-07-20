@@ -1,6 +1,0 @@
-module Pods_coloARizeApp_coloARizeAppTests {
-  umbrella header "Pods-coloARizeApp-coloARizeAppTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
