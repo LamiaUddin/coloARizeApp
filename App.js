@@ -15,10 +15,16 @@ import {
   useCameraDevices,
   useFrameProcessor,
 } from 'react-native-vision-camera';
+import { simColourBlind } from './frameProcessorPlugin';
 
 const App = () => {
   const frameProcessor = useFrameProcessor(frame => {
     'worklet';
+    const test = simColourBlind(frame);
+    console.log(test);
+    console.log("should return");
+
+    return test;
   }, []);
 
   useEffect(() => {
@@ -29,7 +35,7 @@ const App = () => {
         cameraPermission = await Camera.requestCameraPermission();
       }
 
-      console.log('Camera permission status: ${cameraPermission}');
+      console.log('Camera permission status:', cameraPermission);
 
       if (cameraPermission == 'denied') {
         await Linking.openSettings();
@@ -49,6 +55,7 @@ const App = () => {
       device={device}
       isActive={true}
       frameProcessor={frameProcessor}
+      frameProcessorFps={1}
     />
   );
 };
