@@ -60,28 +60,35 @@ const App = () => {
     getPermission();
   }, []);
 
+
+  const onImageLoad = () => {
+
+  }
+
   const devices = useCameraDevices();
   const device = devices.back;
 
   if (device == null) return <Text>ColoArize</Text>;
 
+  // const test = {
+  //   uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+  // }
+
   return (
     <View style={StyleSheet.container}>
       <View>
       <Camera
-          style={{height: 300, width: 300}}
+          style={{height: 0, width: 0}}
           device={device}
           isActive={true}
           frameProcessor={frameProcessor}
-          frameProcessorFps={1}
+          frameProcessorFps={30}
         />
       </View>
     <Image
-        style={{height: 400, width: 400}}
+        style={{height: 800, width: 400}}
         source={{uri: `data:image/png;base64,${currentImg}`}}
-        defaultSource={{
-          uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-        }}
+        onload={onImageLoad}
       />
     </View>
   );
